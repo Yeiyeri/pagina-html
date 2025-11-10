@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Carrito de Compras</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .cart-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .items-count {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .action-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .action-link:hover {
+            color: #e31e24;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-secondary {
+            background-color: #999;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #777;
+        }
+
+        .btn-primary {
+            background-color: #5dade2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3498db;
+        }
+
+        .btn-link {
+            background: none;
+            color: #e31e24;
+            border: 1px solid #e31e24;
+        }
+
+        .btn-link:hover {
+            background-color: #e31e24;
+            color: white;
+        }
+
+        .summary-section {
+            background-color: #4a5a77;
+            color: white;
+            border-radius: 8px;
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .summary-subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tax-note {
+            font-size: 12px;
+            color: #d4d4d4;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-checkout {
+            background-color: #5dade2;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-checkout:hover {
+            background-color: #3498db;
+        }
+
+        .info-section {
+            background-color: #e8e8e8;
+            color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .info-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .info-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .terms-link {
+            color: #666;
+            display: block;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="spandable-menu">
+                <div class="logo">
+                    <button class="icon-btn"> <img src="image/btn_menu.png" alt=""></button>
+                </div>
+            </div>
+
+            <div class="">
+                <a href="http://127.0.0.1:5500/index.html#" class="icon-btn"><img src="image/Suika Technologies.png"></a>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+            </div>
+
+            <div class="header-icons">
+                <button class="icon-btn"><img src="image/Map-puntero.png" alt="" width="12px" height="12px"> Ubicacion</button>
+                <button class="icon-btn"><img src="image/Rastrea.png" alt="" width="15px" height="12px"> Rastrea tu Pedido</button>
+                <button class="icon-btn"><img src="image/Perfil icon.png" alt="" width="8px" height="10px"> Mi Cuenta</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="cart-section">
+            <h1 class="page-title">Tu Carrito de Compras</h1>
+            <p class="items-count"># de ítems</p>
+
+            <!-- Items del carro -->
+            <div class="cart-item">
+                <div class="item-image-container">
+                    <img src="image/Headphones.png" alt="audifonos" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div>
+                        <h3 class="item-name">Nombre del producto</h3>
+                        <p class="item-price">$Precio</p>
+                    </div>
+                    <div class="item-actions">
+                        <a href="#" class="action-link">Añadir</a>
+                        <span class="action-link">|</span>
+                        <a href="#" class="action-link">Remover</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <a href="http://127.0.0.1:5500/index.html#" class="btn btn-secondary">Continuar Comprando</a>
+                <button class="btn btn-primary">Continuar al Pago</button>
+                <button class="btn btn-link">Remover todos los productos</button>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <div class="summary-title">Total Estimado</div>
+            <div class="summary-subtitle">$Precio estimado</div>
+            <p class="tax-note">
+                Los impuestos de venta se calcularán durante la verificación cuando sea aplicable.
+            </p>
+            <button class="btn-checkout">Continuar al Pago</button>
+
+            <div class="info-section">
+                <div class="info-title">[Mas informacion tecnica]</div>
+                <p class="info-text">
+                    Para mas informacion consulte nuestros Terminos y Condiciones
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
